@@ -20,106 +20,171 @@ class ProductDetail extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            iconTheme: IconThemeData(
+              color: Colors.black,
+            ),
             pinned: true,
             backgroundColor: Color(0xff0F2F57),
             elevation: 0,
+            expandedHeight: 500,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Stack(
+                children: [
+                  Container(
+                    height: 600,
+                    width: double.infinity,
+                    child: Hero(
+                      tag: id,
+                      child: Image.network(
+                        item.imageUrl,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+
+                  // SizedBox(height: 10),
+                  // Text(item.title),
+                  // SizedBox(height: 10),
+                  // Text("\$${item.price}"),
+                  // SizedBox(height: 10),
+                  // Text(item.description),
+
+                  Positioned(
+                    bottom: 0,
+                    child: Container(
+                      height: 30,
+                      width: screenWidth,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                      ),
+                      child: Center(
+                          //child: Text("gjgj"),
+                          ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 5,
+                    right: 20,
+                    child: Container(
+                      height: 60,
+                      width: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(child: Text("\$${item.price}")),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                Stack(
-                  children: [
-                    Container(
-                      child: Hero(
-                        tag: id,
-                        child: Image.network(
-                          item.imageUrl,
+                // Stack(
+                //   children: [
+                //     Container(
+                //       child: Hero(
+                //         tag: id,
+                //         child: Image.network(
+                //           item.imageUrl,
+                //         ),
+                //       ),
+                //     ),
+
+                //     // SizedBox(height: 10),
+                //     // Text(item.title),
+                //     // SizedBox(height: 10),
+                //     // Text("\$${item.price}"),
+                //     // SizedBox(height: 10),
+                //     // Text(item.description),
+
+                //     Positioned(
+                //       bottom: 0,
+                //       child: Container(
+                //         height: 30,
+                //         width: screenWidth,
+                //         decoration: BoxDecoration(
+                //           color: Colors.white,
+                //           borderRadius: BorderRadius.only(
+                //             topLeft: Radius.circular(20),
+                //             topRight: Radius.circular(20),
+                //           ),
+                //         ),
+                //         child: Center(
+                //             //child: Text("gjgj"),
+                //             ),
+                //       ),
+                //     ),
+                //     Positioned(
+                //       bottom: 5,
+                //       right: 20,
+                //       child: Container(
+                //         height: 60,
+                //         width: 60,
+                //         decoration: BoxDecoration(
+                //           color: Colors.green,
+                //           shape: BoxShape.circle,
+                //         ),
+                //         child: Center(child: Text("\$${item.price}")),
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                // Expanded(
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(
+                          bottom: 10,
+                          left: 10,
                         ),
-                      ),
-                    ),
-
-                    // SizedBox(height: 10),
-                    // Text(item.title),
-                    // SizedBox(height: 10),
-                    // Text("\$${item.price}"),
-                    // SizedBox(height: 10),
-                    // Text(item.description),
-
-                    Positioned(
-                      bottom: 0,
-                      child: Container(
-                        height: 30,
-                        width: screenWidth,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
+                        child: Text(
+                          item.title,
+                          style: TextStyle(
+                            fontSize: 25,
                           ),
                         ),
-                        child: Center(
-                            //child: Text("gjgj"),
-                            ),
                       ),
-                    ),
-                    Positioned(
-                      bottom: 5,
-                      right: 20,
-                      child: Container(
-                        height: 60,
-                        width: 60,
-                        decoration: BoxDecoration(
-                          color: Colors.green,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Center(child: Text("\$${item.price}")),
-                      ),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
+                      Container(
+                        child: Container(
                           margin: EdgeInsets.only(
                             bottom: 10,
                             left: 10,
                           ),
                           child: Text(
-                            item.title,
+                            item.description,
                             style: TextStyle(
-                              fontSize: 25,
+                              height: 2,
                             ),
                           ),
                         ),
-                        Container(
-                          child: Container(
-                            margin: EdgeInsets.only(
-                              bottom: 10,
-                              left: 10,
-                            ),
-                            child: Text(
-                              item.description,
-                              style: TextStyle(
-                                height: 2,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 100,
-                        ),
-                      ],
-                    ),
+                      ),
+                      // SizedBox(
+                      //   height: 100,
+                      // ),
+                    ],
                   ),
                 ),
+                //),
               ],
+            ),
+          ),
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: new Container(
+              color: Colors.white,
             ),
           ),
         ],
